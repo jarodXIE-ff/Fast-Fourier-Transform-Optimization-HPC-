@@ -1,0 +1,25 @@
+./fft_vect --size $((2**25)) --output sound.WAV
+
+./fft_omp_first --size $((2**25))  --output sound.WAV
+
+gcc fft_vect.c -o fft_vect -lm  -fopenmp -march=native
+
+gcc fft_omp_first.c -o fft_omp_first -lm -fopenmp 
+
+for i in {1..25}; do ./fft_vect --size $((2**$i)); done
+
+for i in {1..25}; do ./fft_omp_first --size $((2**$i)); done
+
+for i in {1..25}; do ./fft --size $((2**$i)); done
+
+
+scp NEW_PPAR/FICHIER A AJOUTER jxie@access.grid5000.fr:nancy/NEW_PPAR
+
+scp NEW_PPAR/fft.c jxie@access.grid5000.fr:nancy/NEW_PPAR
+
+
+scp jxie@access.grid5000.fr:nancy/NEW_PPAR/FICHER C:\Users\Jarod\Desktop\Cours\M1\NEW_PPAR
+
+scp jxie@access.grid5000.fr:nancy/NEW_PPAR/FFT_VECT_TIME.txt C:\Users\Jarod\Desktop\Cours\M1\NEW_PPAR
+
+scp jxie@access.grid5000.fr:nancy/NEW_PPAR/FFT_OMP_FIRST_TIME.txt C:\Users\Jarod\Desktop\Cours\M1\NEW_PPAR

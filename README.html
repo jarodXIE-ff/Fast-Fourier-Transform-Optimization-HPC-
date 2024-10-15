@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>README</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><hr>
+<h1 id="xie-jarod-28710097">XIE JAROD 28710097</h1>
+<h1 id="projet-ppar-fft">Projet PPAR FFT</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Ce projet vise à paralléliser une implémentation séquentielle de la transformée de Fourier rapide (FFT) en utilisant OpenMP et à explorer la vectorisation (SIMD) pour améliorer les performances. L’objectif principal est d’obtenir une exécution efficace sur un seul nœud de calcul.</p>
+<h2 id="contenu-du-projet">Contenu du Projet</h2>
+<p>Le code source est réparti en plusieurs fichiers :</p>
+<ul>
+<li><code>fft_omp_first.c</code> : Implémentation séquentielle de la FFT avec OpenMP.</li>
+<li><code>fft_vect.c</code> : Version vectorisée de la FFT avec OpenMP et SIMD.</li>
+<li><code>utils.c</code> : Fonctions utilitaires partagées.</li>
+<li><code>main.c</code> : Programme principal pour générer du bruit blanc, effectuer la FFT, appliquer des transformations et produire un fichier audio.</li>
+</ul>
+<h2 id="compilation">Compilation</h2>
+<h3 id="fft-avec-openmp">FFT avec OpenMP</h3>
+<p>Vous avez juste besoin de run le makefile avec :</p>
+<p><code>make</code></p>
+<h2 id="utilisation">Utilisation</h2>
+<h3 id="fft-avec-openmp-1">FFT avec OpenMP</h3>
+<p>`./fft_omp --size [TAILLE] --seed [GRAINE] --output [FICHIER_SORTE]</p>
+<h3 id="fft-vectorisée-avec-openmp-et-simd">FFT Vectorisée avec OpenMP et SIMD</h3>
+<p>`./fft_vect --size [TAILLE] --seed [GRAINE] --output [FICHIER_SORTE]</p>
+<h2 id="options">Options</h2>
+<ul>
+<li><code>--size</code> : Taille des données d’entrée (2^k).</li>
+<li><code>--seed</code> : Graine pour la génération de bruit blanc.</li>
+<li><code>--output</code> : Nom du fichier de sortie audio.</li>
+<li><code>--cutoff</code> : Valeur de coupure pour ajuster les coefficients de Fourier.</li>
+</ul>
+<h2 id="benchmarking">Benchmarking</h2>
+<p>Pour mesurer les performances du programme, vous pouvez utiliser la commande suivante :<br>
+Les résultats sont dans des fichiers textes.</p>
+<p><code>for i in {1..25}; do ./fft_vect --size $((2**$i)); done</code></p>
+<p>Pour avoir les résultats graphiques, il faut d’abord utiliser les 3 commandes suivantes :</p>
+<p><code>for i in {1..25}; do ./fft_vect --size $((2**$i)); done</code></p>
+<p><code>for i in {1..25}; do ./fft_omp_first --size $((2**$i)); done</code></p>
+<p><code>for i in {1..25}; do ./fft --size $((2**$i)); done</code></p>
+<p>Puis faites : <code>python graph.py</code>, le graphique est dans le répertoire Graph_of_Time<br>
+Pour avoir le graphique en base 2 , suivre les instructions en commentaire dans <code>graph.py</code>.</p>
+<h2 id="auteurs">Auteurs</h2>
+<p>XIE JAROD : <a href="mailto:Jarod.Xie@etu.sorbonne-universite.fr">Jarod.Xie@etu.sorbonne-universite.fr</a></p>
+</div>
+</body>
+
+</html>
